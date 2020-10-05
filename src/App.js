@@ -42,7 +42,71 @@ class App extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("work");
+
+    const validation = this.formValidation();
+    console.log(validation);
+    if (validation.correct) {
+      this.setState({
+        username: "",
+        email: "",
+        pass: "",
+        accept: false,
+
+        errors: {
+          username: false,
+          email: false,
+          pass: false,
+          accept: false,
+        },
+      });
+      console.log("formularz wysłanys");
+    } else {
+      this.setState({
+        errors: {
+          username: !validation.username,
+          email: !validation.email,
+          pass: !validation.password,
+          accept: !validation.accept,
+        },
+      });
+    }
+  };
+
+  formValidation = () => {
+    let username = false;
+    let email = false;
+    let password = false;
+    let accept = false;
+    let correct = false;
+    if (
+      this.state.username.length > 10 &&
+      this.state.username.indexOf(" ") === -1
+    ) {
+      username = true;
+    }
+    if (this.state.email.indexOf("@") !== -1) {
+      email = true;
+    }
+
+    if (this.state.pass.length === 8) {
+      password = true;
+    }
+
+    if (this.state.accept) {
+      accept = true;
+    }
+
+    if (username && email && password && accept) {
+      correct = true;
+    }
+
+    return {
+      correct,
+      username,
+      email,
+      password,
+      accept,
+    };
   };
   render() {
     return (
