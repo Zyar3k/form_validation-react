@@ -7,6 +7,21 @@ class App extends React.Component {
     email: "",
     pass: "",
     accept: false,
+
+    errors: {
+      username: false,
+      email: false,
+      pass: false,
+      accept: false,
+    },
+  };
+
+  messages = {
+    username_incorrect:
+      "Nazwa musi być dłuższa niż 10 znaków i nie może zawierać spacji",
+    email_incorrect: "Brak @ w mailu",
+    password_incorrect: "Hasło mus mieć 8 znaków",
+    accept_incorrect: "Nie zaznaczona zgoda",
   };
 
   handleChange = (e) => {
@@ -42,6 +57,9 @@ class App extends React.Component {
               value={this.state.username}
               onChange={this.handleChange}
             />
+            {this.state.errors.username && (
+              <span>{this.messages.username_incorrect}</span>
+            )}
           </label>
           <label htmlFor="email">
             Twoje email:
@@ -52,6 +70,9 @@ class App extends React.Component {
               value={this.state.email}
               onChange={this.handleChange}
             />
+            {this.state.errors.email && (
+              <span>{this.messages.email_incorrect}</span>
+            )}
           </label>
           <label htmlFor="password">
             Twoje hasło:
@@ -62,6 +83,9 @@ class App extends React.Component {
               value={this.state.pass}
               onChange={this.handleChange}
             />
+            {this.state.errors.pass && (
+              <span>{this.messages.password_incorrect}</span>
+            )}
           </label>
 
           <label htmlFor="accept">
@@ -74,6 +98,9 @@ class App extends React.Component {
             />
             Wyrażam zgodę
           </label>
+          {this.state.errors.accept && (
+            <span>{this.messages.accept_incorrect}</span>
+          )}
           <button>Zapisz się</button>
         </form>
       </div>
