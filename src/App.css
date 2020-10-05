@@ -1,6 +1,9 @@
 body {
   background: rgb(70, 63, 63);
   color: wheat;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
 }
 
 form {
@@ -14,6 +17,9 @@ label {
 input {
   margin-left: 20px;
   margin-top: 20px;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
 }
 
 input[type="checkbox"] {

@@ -7,6 +7,7 @@ class App extends React.Component {
     email: "",
     pass: "",
     accept: false,
+    message: "",
 
     errors: {
       username: false,
@@ -51,6 +52,7 @@ class App extends React.Component {
         email: "",
         pass: "",
         accept: false,
+        message: "Formularz został wysłany",
 
         errors: {
           username: false,
@@ -108,6 +110,18 @@ class App extends React.Component {
       accept,
     };
   };
+
+  componentDidUpdate() {
+    if (this.state.message !== "") {
+      setTimeout(
+        () =>
+          this.setState({
+            message: "",
+          }),
+        2000
+      );
+    }
+  }
   render() {
     return (
       <div className="App">
@@ -167,6 +181,7 @@ class App extends React.Component {
           )}
           <button>Zapisz się</button>
         </form>
+        {this.state.message && <h3>{this.state.message}</h3>}
       </div>
     );
   }
